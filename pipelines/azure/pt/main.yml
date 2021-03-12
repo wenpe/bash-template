@@ -1,0 +1,28 @@
+trigger:
+- none
+
+stages:
+- stage: SetupAndExecuteShellSpec
+  pool:
+    vmImage: 'ubuntu-18.04'
+  jobs:
+  - job:
+    steps:
+    - task: Bash@3
+      displayName: 'test reportres'
+      continueOnError: true
+      inputs:
+        targetType: 'inline'
+        script: |
+          git clone https://github.com/ko1nksm/shellspec.git
+          sudo ln -s shellspec/shellspec /usr/local/bin/
+          ./shellspec/shellspec --shell /bin/bash --format j > reportt/test.xml
+    - task: PublishTestResults@2
+      condition: succeededOrFailed()
+      inputs:
+        testResultsFormat: 'JUnit'
+        testResultsFiles: 'report/*.xml'
+        failTaskOnFailedTests: false
+    - publish: report/
+      condition: succeededOrFailed()
+      artifact: Results

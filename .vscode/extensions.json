@@ -1,0 +1,12 @@
+{
+  "recommendations": [
+    "coenraads.bracket-pair-colorizer",
+    "donjayamanne.githistory",
+    "oderwat.indent-rainbow",
+    "vscode-icons-team.vscode-icons",
+    "Gruntfuggly.todo-tree",
+    "timonwong.shellcheck",
+    "foxundermoon.shell-format"
+  ],
+  "unwantedRecommendations": []
+}
